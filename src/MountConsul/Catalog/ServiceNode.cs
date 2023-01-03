@@ -15,7 +15,7 @@ public record ServiceNode
 
     public string ServiceAddress { get; set; } = null!;
 
-    public short ServicePort { get; set; }
+    public ushort ServicePort { get; set; }
 
     public string[] ServiceTags { get; set; } = Array.Empty<string>();
 };
