@@ -20,7 +20,7 @@ public class KvHandler : PathHandler, ILiteralPathHandler
     {
     }
 
-    protected override IItem? GetItemImpl()
+    protected override IItem GetItemImpl()
     {
         return CreateItem(ParentPath);
     }

@@ -4,12 +4,18 @@ namespace MountConsul.Catalog;
 
 public record ServiceNode
 {
-    public string ID { get; set; }
-    
+    public string ID { get; set; } = null!;
+
     [JsonPropertyName("Node")]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 
-    public string Address { get; set; }
+    public string Address { get; set; } = null!;
 
-    public string Datacenter { get; set; }
+    public string Datacenter { get; set; } = null!;
+
+    public string ServiceAddress { get; set; } = null!;
+
+    public short ServicePort { get; set; }
+
+    public string[] ServiceTags { get; set; } = Array.Empty<string>();
 };

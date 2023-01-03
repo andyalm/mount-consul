@@ -12,7 +12,7 @@ public class RootHandler : PathHandler
     {
     }
 
-    protected override IItem? GetItemImpl()
+    protected override IItem GetItemImpl()
     {
         return new RootItem();
     }

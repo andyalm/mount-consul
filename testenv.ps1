@@ -12,7 +12,7 @@ param(
 $ErrorActionPreference='Stop'
 $env:NO_MOUNT_CONSUL='1'
 #$DebugPreference=$Debug ? 'Continue' : 'SilentlyContinue'
-$DebugPreference='SilentlyContinue'
+#$DebugPreference='SilentlyContinue'
 dotnet build
 if(-not (Get-Alias ls -ErrorAction SilentlyContinue)) {
     New-Alias ls Get-ChildItem

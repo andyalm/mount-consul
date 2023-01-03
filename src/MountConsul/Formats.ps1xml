@@ -68,10 +68,10 @@
           <TableRowEntry>
             <TableColumnItems>
               <TableColumnItem>
-                <PropertyName>Name</PropertyName>
+                <PropertyName>AddressAndPort</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>Address</PropertyName>
+                <PropertyName>Tags</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>

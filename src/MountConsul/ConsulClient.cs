@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using MountAnything;
 using MountConsul.Catalog;
 
@@ -30,8 +29,17 @@ public class ConsulClient : IDisposable
 
     public ServiceNode? GetServiceNode(string serviceName, string nodeName)
     {
+        if (!nodeName.Contains(":"))
+        {
+            return null;
+        }
+        
+        var nodeParts = nodeName.Split(":");
+        var address = nodeParts[0];
+        var port = nodeParts[1];
+        
         return _client.GetJson<ServiceNode[]>(
-            $"v1/catalog/service/{serviceName}?filter={WebUtility.UrlEncode($"Node == \"{nodeName}\"")}")
+            $"v1/catalog/service/{serviceName}?filter={WebUtility.UrlEncode($"ServiceAddress == \"{address}\" and ServicePort == \"{port}\"")}")
             .FirstOrDefault();
     }
 
@@ -63,7 +71,7 @@ public class ConsulClient : IDisposable
 
     public void Dispose()
     {
-        _client?.Dispose();
+        _client.Dispose();
     }
     
     private class DebugLoggingHandler : DelegatingHandler

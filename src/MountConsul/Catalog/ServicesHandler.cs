@@ -13,7 +13,7 @@ public class ServicesHandler : PathHandler, ILiteralPathHandler
         _client = client;
     }
 
-    protected override IItem? GetItemImpl()
+    protected override IItem GetItemImpl()
     {
         return CreateItem(ParentPath);
     }

@@ -26,7 +26,7 @@ public class ConsulDriveHandler : IDriveHandler, INewDriveParameters<ConsulDrive
         return new Uri($"http://{NewDriveParameters.ConsulAddress}");
     }
 
-    public ConsulDriveParameters NewDriveParameters { get; set; }
+    public ConsulDriveParameters NewDriveParameters { get; set; } = null!;
 }
 
 public class ConsulDriveInfo : PSDriveInfo
