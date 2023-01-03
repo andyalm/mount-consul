@@ -6,6 +6,8 @@ namespace MountConsul.Kv;
 [RequiresPreviewFeatures]
 public class KvHandler : PathHandler, ILiteralPathHandler
 {
+    private readonly KvItemNavigator _navigator;
+
     public static IItem CreateItem(ItemPath parentPath)
     {
         return new GenericContainerItem(parentPath, LiteralItemName)
@@ -16,8 +18,9 @@ public class KvHandler : PathHandler, ILiteralPathHandler
 
     public static string LiteralItemName => "kv";
     
-    public KvHandler(ItemPath path, IPathHandlerContext context) : base(path, context)
+    public KvHandler(ItemPath path, IPathHandlerContext context, KvItemNavigator navigator) : base(path, context)
     {
+        _navigator = navigator;
     }
 
     protected override IItem GetItemImpl()
@@ -27,6 +30,6 @@ public class KvHandler : PathHandler, ILiteralPathHandler
 
     protected override IEnumerable<IItem> GetChildItemsImpl()
     {
-        yield break;
+        return _navigator.ListChildItems(Path);
     }
 }

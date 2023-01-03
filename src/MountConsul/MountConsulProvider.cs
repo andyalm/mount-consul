@@ -15,21 +15,23 @@ public class MountConsulProvider : IMountAnythingProvider
         var root = Router.Create<RootHandler>();
         root.RegisterServices(RegisterServices);
         
-        
-        root.MapLiteral<CatalogHandler>(catalog =>
+        root.Map<DatacenterHandler,Datacenter>(datacenter =>
         {
-            catalog.Map<ServicesHandler>(services =>
+            datacenter.MapLiteral<CatalogHandler>(catalog =>
             {
-                services.Map<ServiceHandler>(service =>
+                catalog.Map<ServicesHandler>(services =>
                 {
-                    service.Map<ServiceNodeHandler>();
+                    services.Map<ServiceHandler>(service =>
+                    {
+                        service.Map<ServiceNodeHandler>();
+                    });
                 });
             });
-        });
         
-        root.MapLiteral<KvHandler>(kv =>
-        {
-            
+            datacenter.MapLiteral<KvHandler>(kv =>
+            {
+                kv.MapRecursive<KeyHandler,KeyPath>();
+            });
         });
 
         return root;
@@ -41,6 +43,7 @@ public class MountConsulProvider : IMountAnythingProvider
     {
         builder.Register(c => GetConsulConfig(c.Resolve<IPathHandlerContext>()));
         builder.RegisterType<ConsulClient>();
+        builder.Register(c => new Datacenter(""));
     }
 
     private ConsulConfig GetConsulConfig(IPathHandlerContext context)

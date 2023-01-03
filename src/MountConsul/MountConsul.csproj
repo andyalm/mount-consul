@@ -18,12 +18,12 @@
     <PackageVersion Condition="$(PackageVersion)==''">0.0.1</PackageVersion>
     <PublishDir>..\bin\MountConsul\</PublishDir>
     <LangVersion>11.0</LangVersion>
-    <EnablePreviewFeatures>True</EnablePreviewFeatures>
+    <EnablePreviewFeatures>true</EnablePreviewFeatures>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MountAnything" Version="0.7.0-beta04" />
-    <PackageReference Include="MountAnything.Hosting.Build" Version="0.7.0-beta04">
+    <PackageReference Include="MountAnything" Version="0.7.0-beta07" />
+    <PackageReference Include="MountAnything.Hosting.Build" Version="0.7.0-beta07">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.PowerShell.Commands.Utility" Version="7.2.0" />
@@ -32,11 +32,6 @@
 
   <ItemGroup>
     <PSFormat Include="Formats.ps1xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!--ProjectReference Include="..\..\..\mount-anything\src\MountAnything.Hosting.Build\MountAnything.Hosting.Build.csproj" /-->
-    <ProjectReference Include="..\..\..\mount-anything\src\MountAnything\MountAnything.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

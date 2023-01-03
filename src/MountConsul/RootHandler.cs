@@ -8,8 +8,11 @@ namespace MountConsul;
 [RequiresPreviewFeatures]
 public class RootHandler : PathHandler
 {
-    public RootHandler(ItemPath path, IPathHandlerContext context) : base(path, context)
+    private readonly ConsulClient _client;
+
+    public RootHandler(ItemPath path, IPathHandlerContext context, ConsulClient client) : base(path, context)
     {
+        _client = client;
     }
 
     protected override IItem GetItemImpl()
@@ -19,7 +22,6 @@ public class RootHandler : PathHandler
 
     protected override IEnumerable<IItem> GetChildItemsImpl()
     {
-        yield return CatalogHandler.CreateItem(Path);
-        yield return KvHandler.CreateItem(Path);
+        return _client.ListDatacenters().Select(dc => new DatacenterItem(Path, dc));
     }
 }
