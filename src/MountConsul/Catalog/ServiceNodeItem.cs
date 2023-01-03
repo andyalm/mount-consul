@@ -14,7 +14,7 @@ public class ServiceNodeItem : Item<ServiceNode>
     public override bool IsContainer => false;
 
     [ItemProperty]
-    public short Port => UnderlyingObject.ServicePort;
+    public ushort Port => UnderlyingObject.ServicePort;
 
     [ItemProperty]
     public string AddressAndPort { get; }
