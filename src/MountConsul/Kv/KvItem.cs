@@ -65,6 +65,8 @@ public class KvItem : Item
     [ItemProperty]
     public string Key { get; }
 
+    public string? Base64Value => Property<string>(nameof(KeyMetadata.Base64Value));
+
     [ItemProperty]
     public PSObject? Value => _value?.Value;
     public override string ItemType => IsContainer ? "Directory" : "Key";
