@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>MountConsul</RootNamespace>
+    <PowershellProviderName>MountConsul</PowershellProviderName>
+    <ProjectGuid>49e0522b-d20d-4b63-ac77-9fbc9fd7b8e1</ProjectGuid>
+    <Authors>Andy Alm</Authors>
+    <Copyright>(c) 2023 Andy Alm. All rights reserved.</Copyright>
+    <Description>An experimental powershell provider that allows you to browse consul as a filesystem</Description>
+    <PackageLicenseUrl>https://github.com/andyalm/mount-consul/blob/main/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://github.com/andyalm/mount-consul/blob/main/mount-aws.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/andyalm/mount-consul</PackageProjectUrl>
+    <PackageReleaseNotes>$(GithubReleaseNotes)</PackageReleaseNotes>
+    <PackageVersion Condition="$(GithubReleaseTag)!=''">$(GithubReleaseTag.Substring(1))</PackageVersion>
+    <PackageVersion Condition="$(PackageVersion)==''">0.0.1</PackageVersion>
+    <PublishDir>..\bin\MountConsul\</PublishDir>
+    <LangVersion>11.0</LangVersion>
+    <EnablePreviewFeatures>True</EnablePreviewFeatures>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MountAnything" Version="0.7.0-beta04" />
+    <PackageReference Include="MountAnything.Hosting.Build" Version="0.7.0-beta04">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.PowerShell.Commands.Utility" Version="7.2.0" />
+    <PackageReference Include="System.Management.Automation" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PSFormat Include="Formats.ps1xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--ProjectReference Include="..\..\..\mount-anything\src\MountAnything.Hosting.Build\MountAnything.Hosting.Build.csproj" /-->
+    <ProjectReference Include="..\..\..\mount-anything\src\MountAnything\MountAnything.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <FunctionsToExport>
+
+    </FunctionsToExport>
+    <AliasesToExport>
+
+    </AliasesToExport>
+  </PropertyGroup>
+
+</Project>
