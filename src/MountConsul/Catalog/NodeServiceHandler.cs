@@ -16,7 +16,7 @@ public class NodeServiceHandler : PathHandler
         var nodeServices = _client.GetNodeServices(ItemName);
         var nodeService = nodeServices?.Services?.FirstOrDefault(s => s.Service == ItemName);
 
-        return nodeService != null ? new NodeServiceItem(ParentPath, nodeService, nodeServices.Node.Address) : null;
+        return nodeService != null ? new NodeServiceItem(ParentPath, nodeService, nodeServices!.Node.Address) : null;
     }
 
     protected override IEnumerable<IItem> GetChildItemsImpl()

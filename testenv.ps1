@@ -7,12 +7,14 @@ param(
     
     [Parameter(Position=1,Mandatory=$false)]
     [string]
-    $AclToken
+    $AclToken,
+
+    [Parameter()]
+    [string]
+    $Root = ''
 )
 $ErrorActionPreference='Stop'
 $env:NO_MOUNT_CONSUL='1'
-#$DebugPreference=$Debug ? 'Continue' : 'SilentlyContinue'
-#$DebugPreference='SilentlyContinue'
 dotnet build
 if(-not (Get-Alias ls -ErrorAction SilentlyContinue)) {
     New-Alias ls Get-ChildItem
@@ -22,5 +24,5 @@ if(-not (Get-Alias cat -ErrorAction SilentlyContinue)) {
 }
 Import-Module $([IO.Path]::Combine($PWD,'src','MountConsul','bin','Debug','net6.0','Module','MountConsul.psd1'))
 
-New-PSDrive -Name consul -PSProvider MountConsul -Root '' -ConsulAddress $ConsulAddress -AclToken $AclToken
+New-PSDrive -Name consul -PSProvider MountConsul -Root $Root -ConsulAddress $ConsulAddress -AclToken $AclToken
 cd consul:
