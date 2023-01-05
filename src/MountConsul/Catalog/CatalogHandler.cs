@@ -27,6 +27,7 @@ public class CatalogHandler : PathHandler, ILiteralPathHandler
 
     protected override IEnumerable<IItem> GetChildItemsImpl()
     {
+        yield return NodesHandler.CreateItem(Path);
         yield return ServicesHandler.CreateItem(Path);
     }
 }

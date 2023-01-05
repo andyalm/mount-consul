@@ -77,6 +77,21 @@ public class ConsulClient : IDisposable
         return null;
     }
 
+    public Node[] GetNodes()
+    {
+        return _client.GetJson<Node[]>($"v1/catalog/nodes?dc={_datacenter}");
+    }
+
+    public Node? GetNode(string nodeName)
+    {
+        return _client.GetJson<Node[]>($"v1/catalog/nodes?dc={_datacenter}&filter={WebUtility.UrlEncode($"Node == \"{nodeName}\"")}").FirstOrDefault();
+    }
+    
+    public NodeServicesResponse GetNodeServices(string nodeName)
+    {
+        return _client.GetJson<NodeServicesResponse>($"v1/catalog/node-services/{WebUtility.UrlEncode(nodeName)}?dc={_datacenter}");
+    }
+
     public IEnumerable<KeyMetadata> GetKeysRecursive(ItemPath? pathPrefix = null)
     {
         var requestUri = "v1/kv";

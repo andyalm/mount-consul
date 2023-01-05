@@ -100,6 +100,63 @@
       </TableControl>
     </View>
     <View>
+      <Name>MountConsul.Catalog.Node</Name>
+      <ViewSelectedBy>
+        <TypeName>MountConsul.Catalog.NodeItem</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Address</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>MountConsul.Catalog.NodeService</Name>
+      <ViewSelectedBy>
+        <TypeName>MountConsul.Catalog.NodeServiceItem</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+          <TableColumnHeader>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>AddressAndPort</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Service</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Tags</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
       <Name>MountConsul.Kv.KvItem</Name>
       <ViewSelectedBy>
         <TypeName>MountConsul.Kv.KvItem</TypeName>

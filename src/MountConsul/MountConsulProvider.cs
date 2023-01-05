@@ -19,6 +19,13 @@ public class MountConsulProvider : IMountAnythingProvider
         {
             datacenter.MapLiteral<CatalogHandler>(catalog =>
             {
+                catalog.Map<NodesHandler>(nodes =>
+                {
+                    nodes.Map<NodeHandler>(node =>
+                    {
+                        node.Map<NodeServiceHandler>();
+                    });
+                });
                 catalog.Map<ServicesHandler>(services =>
                 {
                     services.Map<ServiceHandler>(service =>
