@@ -25,6 +25,9 @@ The virtual filesystem is constructed like this (values surrounded by <> are dyn
 ```
  -- <datacenter>
     |-- catalog
+        |-- nodes
+            |-- <node-name>
+                |-- <node-service>
         |-- services
             |-- <service-name>
                 |-- <service-node>
