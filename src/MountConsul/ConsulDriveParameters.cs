@@ -9,4 +9,14 @@ public class ConsulDriveParameters
 
     [Parameter]
     public string? AclToken { get; set; }
+
+    public Uri GetEndpoint()
+    {
+        if (ConsulAddress.StartsWith("http://") || ConsulAddress.StartsWith("https://"))
+        {
+            return new Uri(ConsulAddress);
+        }
+
+        return new Uri($"http://{ConsulAddress}");
+    }
 }

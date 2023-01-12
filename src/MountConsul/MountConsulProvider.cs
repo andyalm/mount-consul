@@ -1,5 +1,6 @@
-﻿using System.Runtime.Versioning;
-using Autofac;
+﻿using System.Management.Automation;
+using System.Runtime.Versioning;
+using Microsoft.Extensions.DependencyInjection;
 using MountAnything;
 using MountAnything.Routing;
 using MountConsul.Catalog;
@@ -8,12 +9,12 @@ using MountConsul.Kv;
 namespace MountConsul;
 
 [RequiresPreviewFeatures]
-public class MountConsulProvider : IMountAnythingProvider
+public class MountConsulProvider : MountAnythingProvider<ConsulDriveParameters>
 {
-    public Router CreateRouter()
+    public override Router CreateRouter()
     {
         var root = Router.Create<RootHandler>();
-        root.RegisterServices(RegisterServices);
+        root.ConfigureServices(ConfigureServices);
         
         root.Map<DatacenterHandler,Datacenter>(datacenter =>
         {
@@ -44,13 +45,25 @@ public class MountConsulProvider : IMountAnythingProvider
         return root;
     }
 
-    public IDriveHandler GetDriveHandler() => new ConsulDriveHandler();
-
-    private void RegisterServices(ContainerBuilder builder)
+    protected override PSDriveInfo NewDrive(PSDriveInfo driveInfo, ConsulDriveParameters parameters)
     {
-        builder.Register(c => GetConsulConfig(c.Resolve<IPathHandlerContext>()));
-        builder.RegisterType<ConsulClient>();
-        builder.Register(c => new Datacenter(""));
+        var config = new ConsulConfig
+        {
+            ConsulEndpoint = parameters.GetEndpoint(),
+            AclToken = parameters.AclToken
+        };
+
+        return new ConsulDriveInfo(config, driveInfo);
+    }
+
+    private void ConfigureServices(IServiceCollection services)
+    {
+        services.AddTransient(s => GetConsulConfig(s.GetRequiredService<IPathHandlerContext>()));
+        services.AddTransient<ConsulClient>();
+        
+        //will be overridden once in the datacenter directory
+        services.AddTransient(_ => new Datacenter(""));
+        
     }
 
     private ConsulConfig GetConsulConfig(IPathHandlerContext context)
