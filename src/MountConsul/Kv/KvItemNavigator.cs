@@ -30,6 +30,7 @@ public class KvItemNavigator : ItemNavigator<KeyMetadata,KvItem>
 
     protected override IEnumerable<KeyMetadata> ListItems(ItemPath? pathPrefix)
     {
-        return _client.GetKeysRecursive(pathPrefix);
+        // keys with null value are directories, we don't want to return those
+        return _client.GetKeysRecursive(pathPrefix).Where(k => k.Base64Value != null);
     }
 }
