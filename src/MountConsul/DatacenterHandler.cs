@@ -1,11 +1,9 @@
-using System.Runtime.Versioning;
 using MountAnything;
 using MountConsul.Catalog;
 using MountConsul.Kv;
 
 namespace MountConsul;
 
-[RequiresPreviewFeatures]
 public class DatacenterHandler : PathHandler
 {
     private readonly ConsulClient _client;

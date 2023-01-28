@@ -3,8 +3,7 @@ using MountAnything;
 
 namespace MountConsul.Catalog;
 
-[RequiresPreviewFeatures]
-public class CatalogHandler : PathHandler, ILiteralPathHandler
+public class CatalogHandler : PathHandler
 {
     public static string LiteralItemName => "catalog";
     

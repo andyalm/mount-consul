@@ -8,7 +8,6 @@ using MountConsul.Kv;
 
 namespace MountConsul;
 
-[RequiresPreviewFeatures]
 public class MountConsulProvider : MountAnythingProvider<ConsulDriveParameters>
 {
     public override Router CreateRouter()
@@ -18,16 +17,16 @@ public class MountConsulProvider : MountAnythingProvider<ConsulDriveParameters>
         
         root.Map<DatacenterHandler,Datacenter>(datacenter =>
         {
-            datacenter.MapLiteral<CatalogHandler>(catalog =>
+            datacenter.MapLiteral<CatalogHandler>(CatalogHandler.LiteralItemName, catalog =>
             {
-                catalog.Map<NodesHandler>(nodes =>
+                catalog.MapLiteral<NodesHandler>(NodesHandler.LiteralItemName, nodes =>
                 {
                     nodes.Map<NodeHandler>(node =>
                     {
                         node.Map<NodeServiceHandler>();
                     });
                 });
-                catalog.Map<ServicesHandler>(services =>
+                catalog.MapLiteral<ServicesHandler>(ServicesHandler.LiteralItemName, services =>
                 {
                     services.Map<ServiceHandler>(service =>
                     {
@@ -36,7 +35,7 @@ public class MountConsulProvider : MountAnythingProvider<ConsulDriveParameters>
                 });
             });
         
-            datacenter.MapLiteral<KvHandler>(kv =>
+            datacenter.MapLiteral<KvHandler>(KvHandler.LiteralItemName, kv =>
             {
                 kv.MapRecursive<KeyHandler,KeyPath>();
             });

@@ -3,8 +3,7 @@ using MountAnything;
 
 namespace MountConsul.Catalog;
 
-[RequiresPreviewFeatures]
-public class NodesHandler : PathHandler, ILiteralPathHandler
+public class NodesHandler : PathHandler
 {
     private readonly ConsulClient _client;
 

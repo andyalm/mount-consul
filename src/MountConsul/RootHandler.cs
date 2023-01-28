@@ -5,7 +5,6 @@ using MountConsul.Kv;
 
 namespace MountConsul;
 
-[RequiresPreviewFeatures]
 public class RootHandler : PathHandler
 {
     private readonly ConsulClient _client;

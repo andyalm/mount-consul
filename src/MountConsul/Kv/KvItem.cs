@@ -26,7 +26,7 @@ public class KvItem : Item
         _value = new Lazy<PSObject>(() => GetValue(key.RawValue));
     }
 
-    private PSObject GetValue(string rawValue)
+    private PSObject GetValue(string? rawValue)
     {
         if (string.IsNullOrEmpty(rawValue))
         {

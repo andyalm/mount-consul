@@ -3,8 +3,7 @@ using MountAnything;
 
 namespace MountConsul.Kv;
 
-[RequiresPreviewFeatures]
-public class KvHandler : PathHandler, ILiteralPathHandler
+public class KvHandler : PathHandler
 {
     private readonly KvItemNavigator _navigator;
 
